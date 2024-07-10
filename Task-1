@@ -1,0 +1,41 @@
+import java.util.*;
+public class GuessingGame{
+    public static void main(String args[]){
+        Random random=new Random();
+        Scanner sc=new Scanner(System.in);
+        int score=0;
+        int round=0;
+        while(true){   //loop run untill user want to play or attempt finished
+            int guessnum=random.nextInt(100)+1;   //add 1 because it takes 0-99
+            int attempt=0;
+            System.out.println("hello!,Welcome to the Game");
+            System.out.println("i am thinking a number you have to guess it!!");
+            while(true){  //untill user ran out or guess correct number 
+                System.out.print("enter the number you guess: ");
+                int userguess=sc.nextInt();
+                attempt++;
+                if(userguess==guessnum){
+                    System.out.println("Congratulation you Guess the right number!!");
+                    score+=100-attempt;
+                    round++;    //if guess wrong then round increase
+                    break;      //if guess right then loop break
+                }
+                else if(userguess<guessnum){
+                    System.out.println("Try again,your number is small in comaparison of correct one!!");
+                }
+                else{
+                    System.out.println("Try again,your number is big in comparison of correct one!!");
+                }
+                if(attempt==10){
+                    System.out.println("Sorry,your attempt are finished the correct one is"+guessnum);
+                }
+            }
+            System.out.println("Are you want to play again(Y/N)");
+            String response=sc.next();
+            if(response.equalsIgnoreCase("N")){
+                break;
+            }
+        }
+        System.out.println("Your final score is"+score+"in"+round+"rounds");
+    }
+}
